@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>RMDEnterpriseLibrary</id>
+    <version>0.0.1</version>
+    <title>RMDEnterpriseLibrary</title>
+    <authors>Richard M. Diamond</authors>
+    <owners>bitdozer</owners>
+    <!-- <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl> -->
+    <!-- <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl> -->
+    <!-- <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl> -->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Legacy collection of mostly extension methods for manipulating strings, arrays, lists, GUIDs, file names, etc.</description>
+    <releaseNotes>Initial Nuget release</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <tags>string extension helpers</tags>
+  </metadata>
+  <files>
+    <file src="bin\Release\RMDEnterpriseLibrary.dll" target="lib\net40\RMDEnterpriseLibrary.dll" />
+    <file src="bin\Release\RMDEnterpriseLibrary.xml" target="lib\net40\RMDEnterpriseLibrary.xml" />
+</files>
+</package>
