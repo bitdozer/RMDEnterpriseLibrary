@@ -8,12 +8,22 @@ namespace RMDEnterpriseLibrary
 {
     public static class StringExtension
     {
+        /// <summary>
+        /// Alias for System.Uri.EscapeDataString with null handling (null input returns null)
+        /// </summary>
+        /// <param name="str">string to encode</param>
+        /// <returns></returns>
         public static string UriEscapeDataString(this String str)
         {
             if (string.IsNullOrEmpty(str))
                 return str;
             return Uri.EscapeDataString(str);
         }
+        /// <summary>
+        /// If string is null, returns blank, otherwise returns original string
+        /// </summary>
+        /// <param name="str">string to process</param>
+        /// <returns></returns>
         public static string BlankIfNull(this String str)
         {
             if (str == null)
@@ -22,7 +32,7 @@ namespace RMDEnterpriseLibrary
                 return str;
         }
         /// <summary>
-        /// Returns the DefaultValue if the string is null or zero-length
+        /// Returns the DefaultValue if the string IsNullOrEmpty
         /// </summary>
         /// <param name="str"></param>
         /// <param name="DefaultValue"></param>
@@ -34,6 +44,14 @@ namespace RMDEnterpriseLibrary
             else
                 return str;
         }
+        /// <summary>
+        /// Shortens a string to a maximum target length appending an indicator string
+        /// </summary>
+        /// <param name="s">string to process</param>
+        /// <param name="length">check length; if string is shorter than this it is not processed</param>
+        /// <param name="shortenBy">if string exceeds length it will be shortened to length-shortenBy</param>
+        /// <param name="append">string to append if string is shortened, e.g. "..."</param>
+        /// <returns></returns>
         public static string LimitLength(this String s, int length, int shortenBy, string append)
         {
             if (string.IsNullOrEmpty(s))
@@ -47,22 +65,41 @@ namespace RMDEnterpriseLibrary
                 return s;
             }
             if (s.Length > length && s.Length > shortenBy)
-                return s.Substring(0, length - shortenBy) + append;
+                return s.Substring(0, length - shortenBy) + (append ?? "");
             else
                 return s;
         }
+        /// <summary>
+        /// Shortens a string to a maximum target length appending "..." if shortening occured
+        /// </summary>
+        /// <param name="s">string to process</param>
+        /// <param name="length">check length; if string is shorter than this it is not processed</param>
+        /// <param name="shortenBy">if string exceeds length it will be shortened to length-shortenBy</param>
+        /// <returns></returns>
         public static string LimitLength(this String s, int length, int shortenBy)
         {
             if (string.IsNullOrEmpty(s))
                 return "";
             return LimitLength(s, length, shortenBy, "...");
         }
+        /// <summary>
+        /// Shortens a string to a maximum target length
+        /// </summary>
+        /// <param name="s">string to process</param>
+        /// <param name="length">check length; if string is shorter than this it is not processed</param>
+        /// <returns></returns>
         public static string LimitLength(this String s, int length)
         {
             if (string.IsNullOrEmpty(s))
                 return "";
             return LimitLength(s, length, 3);
         }
+        /// <summary>
+        /// Returns the left len characters of a string.  If string is null, returns blank
+        /// </summary>
+        /// <param name="s">string to process</param>
+        /// <param name="len">maximum characters to return</param>
+        /// <returns></returns>
         public static string Left(this string s, int len)
         {
             if (string.IsNullOrEmpty(s))
@@ -74,6 +111,14 @@ namespace RMDEnterpriseLibrary
             else
                 return s.Substring(0, len);
         }
+        /// <summary>
+        /// Returns the portion of the string left of the first occurence of a 
+        /// target string; case sensitive; returns blank if input is null or 
+        /// search string is not found
+        /// </summary>
+        /// <param name="s">string to process</param>
+        /// <param name="search">string to search for</param>
+        /// <returns></returns>
         public static string LeftOf(this string s, string search)
         {
             if (string.IsNullOrEmpty(s))
@@ -85,6 +130,17 @@ namespace RMDEnterpriseLibrary
             else
                 return s.Substring(0, s.IndexOf(search));
         }
+        /// <summary>
+        /// Returns the portion of the string left of the first occurence of a 
+        /// target string; case sensitive; returns blank if input is null or 
+        /// search string is not found
+        /// </summary>
+        /// <param name="s">string to process</param>
+        /// <param name="search">string to search for</param>
+        /// <param name="ReturnWholeStringIfNotFound">if true, and search is 
+        /// not found, whole string is returned; if false blank is returned
+        /// </param>
+        /// <returns></returns>
         public static string LeftOf(this string s, string search, bool ReturnWholeStringIfNotFound)
         {
             if (string.IsNullOrEmpty(s))
@@ -96,6 +152,17 @@ namespace RMDEnterpriseLibrary
             else
                 return s.Substring(0, (s + search).IndexOf(search));
         }
+        /// <summary>
+        /// Returns the portion of the string left of the last occurence of a 
+        /// target string; case sensitive; returns blank if input is null or 
+        /// search string is not found
+        /// </summary>
+        /// <param name="s">string to process</param>
+        /// <param name="search">string to search for</param>
+        /// <param name="ReturnWholeStringIfNotFound">if true, and search is 
+        /// not found, whole string is returned; if false blank is returned
+        /// </param>
+        /// <returns></returns>
         public static string LeftOfLast(this string s, string search, bool returnWholeStringIfNotFound = false)
         {
             if (string.IsNullOrEmpty(s))
@@ -104,6 +171,17 @@ namespace RMDEnterpriseLibrary
                 return returnWholeStringIfNotFound ? s : "";
             return s.Substring(0, s.LastIndexOf(search));
         }
+        /// <summary>
+        /// Returns the portion of the string right of the last occurence of a 
+        /// target string; case sensitive; returns blank if input is null or 
+        /// search string is not found
+        /// </summary>
+        /// <param name="s">string to process</param>
+        /// <param name="search">string to search for</param>
+        /// <param name="ReturnWholeStringIfNotFound">if true, and search is 
+        /// not found, whole string is returned; if false blank is returned
+        /// </param>
+        /// <returns></returns>
         public static string RightOf(this string s, string search, bool ReturnWholeStringIfNotFound)
         {
             if (string.IsNullOrEmpty(s))
@@ -118,6 +196,14 @@ namespace RMDEnterpriseLibrary
                 return t.Substring(t.LastIndexOf(search) + search.Length);
             }
         }
+        /// <summary>
+        /// Returns the portion of the string right of the last occurence of a 
+        /// target string; case sensitive; returns blank if input is null or 
+        /// search string is not found
+        /// </summary>
+        /// <param name="s">string to process</param>
+        /// <param name="search">string to search for</param>
+        /// <returns></returns>
         public static string RightOf(this string s, string search)
         {
             if (string.IsNullOrEmpty(s))
@@ -129,6 +215,14 @@ namespace RMDEnterpriseLibrary
             else
                 return s.Substring(s.LastIndexOf(search) + search.Length);
         }
+        /// <summary>
+        /// Returns the portion of the string right of the first occurence of a 
+        /// target string; case sensitive; returns blank if input is null or 
+        /// search string is not found
+        /// </summary>
+        /// <param name="s">string to process</param>
+        /// <param name="search">string to search for</param>
+        /// <returns></returns>
         public static string RightOfFirst(this string s, string search)
         {
             if (string.IsNullOrEmpty(s))
@@ -140,6 +234,15 @@ namespace RMDEnterpriseLibrary
             else
                 return s.Substring(s.IndexOf(search) + search.Length);
         }
+        /// <summary>
+        /// Returns the portion of the string right of the first occurence of a 
+        /// target string using the specified comparer when searching; returns 
+        /// blank if input is null or search string is not found
+        /// </summary>
+        /// <param name="s">string to process</param>
+        /// <param name="search">string to search for</param>
+        /// <param name="comparer">StringComparison to use for search</param>
+        /// <returns></returns>
         public static string RightOfFirst(this string s, string search, StringComparison comparer)
         {
             if (string.IsNullOrEmpty(s))
@@ -177,6 +280,12 @@ namespace RMDEnterpriseLibrary
                 return s2;
             }
         }
+        /// <summary>
+        /// Returns the portion of a string to the left of the first occurence of a character
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="c"></param>
+        /// <returns></returns>
         public static string LeftOf(this string s, char c)
         {
             if (string.IsNullOrEmpty(s))

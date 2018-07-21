@@ -2,12 +2,12 @@
 <package >
   <metadata>
     <id>RMDEnterpriseLibrary</id>
-    <version>0.0.1</version>
+    <version>0.0.2-alpha</version>
     <title>RMDEnterpriseLibrary</title>
     <authors>Richard M. Diamond</authors>
     <owners>bitdozer</owners>
     <!-- <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl> -->
-    <!-- <projectUrl>http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE</projectUrl> -->
+    <projectUrl>https://github.com/bitdozer/RMDEnterpriseLibrary</projectUrl> 
     <!-- <iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl> -->
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Legacy collection of mostly extension methods for manipulating strings, arrays, lists, GUIDs, file names, etc.</description>
