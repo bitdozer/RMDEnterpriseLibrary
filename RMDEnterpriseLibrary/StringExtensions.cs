@@ -608,7 +608,7 @@ namespace RMDEnterpriseLibrary
         }
         // adapted from: http://blog.binaryocean.com/2008/02/24/TextBoxMaxLengthFromLINQMetaData.aspx
         /// <summary>
-        /// Returns text between first StartText and EndText in s
+        /// Returns text between first StartText and EndText in a string
         /// </summary>
         /// <param name="s">String being searched</param>
         /// <param name="StartText">Start delimiter</param>
@@ -626,6 +626,11 @@ namespace RMDEnterpriseLibrary
                 return string.Empty;
             return s.Substring(start, end - start);
         }
+        /// <summary>
+        /// Alias for result of double.TryParse.  Returns false if string is null or blank.
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static bool IsNumeric(this string s)
         {
             if (string.IsNullOrEmpty(s))
@@ -633,13 +638,19 @@ namespace RMDEnterpriseLibrary
             double d;
             return double.TryParse(s, out d);
         }
+        /// <summary>
+        /// Converts a string array to a string by concatenating all elements with the specified separator.  Nulls are replaced with blanks.
+        /// </summary>
+        /// <param name="l">source string array</param>
+        /// <param name="separator">Separator between elements in the output string</param>
+        /// <returns></returns>
         public static string ToString(this string[] l, string separator)
         {
             string s = "";
             if (l != null && l.Length > 0)
             {
                 for (int i = 0; i < l.Length; i++)
-                    s += ((i > 0) ? separator : "") + l[i];
+                    s += ((i > 0) ? (separator ?? "") : "") + (l[i] ?? "");
             }
             return s;
         }
