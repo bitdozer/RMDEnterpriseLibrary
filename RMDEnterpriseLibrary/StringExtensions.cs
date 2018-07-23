@@ -6,6 +6,9 @@ using System.Text;
 
 namespace RMDEnterpriseLibrary
 {
+    /// <summary>
+    /// Extension methods on the string class
+    /// </summary>
     public static class StringExtension
     {
         /// <summary>
@@ -552,6 +555,7 @@ namespace RMDEnterpriseLibrary
         /// <summary>
         /// Splits a string list, trims the elements of whitespace and optionally retains blank and/or duplicate items
         /// </summary>
+        /// <param name="s">Source string</param>
         /// <param name="AllowEmptyItems">If true, empty values are retained</param>
         /// <param name="AllowDuplicates">If true, duplicate values are retained</param>
         /// <param name="splitters">char[] of splitters</param>
@@ -678,7 +682,12 @@ namespace RMDEnterpriseLibrary
             }
             return s;
         }
-
+        /// <summary>
+        /// Returns the value at the specified position in the array, or blank if index is outside the range
+        /// </summary>
+        /// <param name="l">string array to index</param>
+        /// <param name="index">index of element to return</param>
+        /// <returns></returns>
         public static string SafeGet(this string[] l, int index)
         {
             if (l != null && index >= 0 &&  l.Length > index)
@@ -686,6 +695,13 @@ namespace RMDEnterpriseLibrary
             else
                 return "";
         }
+        /// <summary>
+        /// Returns the value at the specified position in the array, or DefaultValue if index is outside the range
+        /// </summary>
+        /// <param name="l"></param>
+        /// <param name="index"></param>
+        /// <param name="DefaultValue"></param>
+        /// <returns></returns>
         public static string SafeGet(this string[] l, int index, string DefaultValue)
         {
             if (l != null && index >= 0 && l.Length > index)
@@ -711,6 +727,11 @@ namespace RMDEnterpriseLibrary
             else
                 return position;
         }
+        /// <summary>
+        /// Removes HTML tags from a string using a simple search for &gt; and &lt;  Does not validate HTML or use regular expressions.
+        /// </summary>
+        /// <param name="s">Source string</param>
+        /// <returns>Non-null string</returns>
         public static string StripHtmlTags(this string s)
         {
             if (string.IsNullOrEmpty(s))
@@ -738,6 +759,12 @@ namespace RMDEnterpriseLibrary
             }
             return sb.ToString();
         }
+        /// <summary>
+        /// Removes all \r characters and replaces all \n characters with the specified line ending (not a very robust approach but retaining for legacy compatibility)
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="LineEnding"></param>
+        /// <returns></returns>
         public static string NormalizeLineEndings(this string s, string LineEnding)
         {
             if (string.IsNullOrEmpty(s))
@@ -746,6 +773,11 @@ namespace RMDEnterpriseLibrary
             s = s.Replace("\n", LineEnding);
             return s;
         }
+        /// <summary>
+        /// Returns the int.TryParse value of a string, or 0 if TryParse fails.  Alias for Helpers.SafeIntFromString
+        /// </summary>
+        /// <param name="s">Source string</param>
+        /// <returns></returns>
         public static int SafeInt(this string s)
         {
             if (string.IsNullOrEmpty(s))
