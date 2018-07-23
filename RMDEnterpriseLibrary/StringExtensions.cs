@@ -468,6 +468,11 @@ namespace RMDEnterpriseLibrary
                 if (c == FindChar) count++;
             return count;
         }
+        /// <summary>
+        /// Capitalized the first letter of a string
+        /// </summary>
+        /// <param name="s">Source string</param>
+        /// <returns>Non-null string</returns>
         public static string ToSentence(this string s)
         {
             if (string.IsNullOrEmpty(s))
@@ -565,6 +570,12 @@ namespace RMDEnterpriseLibrary
             }
             return templist.ToArray();
         }
+        /// <summary>
+        /// Converts a sentence to title case ignoring the following short words: "of", "on", "the", "a", "an", "the", "to", "but", "or", "and", "nor", "in", "for", "with", "as", "by", "at", "from"
+        /// </summary>
+        /// <param name="s">Source string</param>
+        /// <param name="ForceLowerCase">If true, the rest of a capitalized word is force to lower case, otherwise remainder of word is left unchanged</param>
+        /// <returns></returns>
         public static string ToTitle(this string s, bool ForceLowerCase)
         {
             if (string.IsNullOrEmpty(s))
@@ -584,7 +595,11 @@ namespace RMDEnterpriseLibrary
             }
             return sb.ToString();
         }
-
+        /// <summary>
+        /// Converts a sentence to title case ignoring the following short words: "of", "on", "the", "a", "an", "the", "to", "but", "or", "and", "nor", "in", "for", "with", "as", "by", "at", "from"
+        /// </summary>
+        /// <param name="s">Source string</param>
+        /// <returns></returns>
         public static string ToTitle(this string s)
         {
             if (string.IsNullOrEmpty(s))
