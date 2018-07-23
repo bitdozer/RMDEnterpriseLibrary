@@ -193,6 +193,12 @@ namespace RMDEnterpriseLibrary
                 return BlankNull(sdt);
             }
         }
+        /// <summary>
+        /// Returns the DateTime in the specified format, or blank if null
+        /// </summary>
+        /// <param name="TheDate">Source DateTime?</param>
+        /// <param name="DateFormatString">DateTime format string to output</param>
+        /// <returns></returns>
         public static string DateToString(DateTime? TheDate, string DateFormatString)
         {
             if (TheDate == null)
@@ -200,6 +206,12 @@ namespace RMDEnterpriseLibrary
             else
                 return ((DateTime)TheDate).ToString(DateFormatString);
         }
+        /// <summary>
+        /// Given two valid dates, returns a string expressing their range (assumes they are on the same day--not very robust but retaining for legacy compatibility)
+        /// </summary>
+        /// <param name="sdt"></param>
+        /// <param name="sdt2"></param>
+        /// <returns></returns>
         public static string CompactDateTimeRangeString(string sdt, string sdt2)
         {
             if (sdt != null && IsDate(sdt) && sdt2 != null && IsDate(sdt2))
@@ -212,6 +224,12 @@ namespace RMDEnterpriseLibrary
                 return BlankNull(sdt) + " - " + BlankNull(sdt2);
             }
         }
+        /// <summary>
+        /// Returns a file size with range specifier and the selected precision, e.g. 100, 2.2K, 3.2M
+        /// </summary>
+        /// <param name="bytes"></param>
+        /// <param name="precision">Number of decimal points of precision to return, e.g. 1 = x.x, 2 = x.xx</param>
+        /// <returns></returns>
         public static string ShortFileSize(long bytes, int precision)
         {
             float i = bytes;
@@ -229,7 +247,7 @@ namespace RMDEnterpriseLibrary
             return i.ToString("F" + precision.ToString()) + s;
         }
         /// <summary>
-        ///     Encodes a string using only uppercase letters of the alphabet.  String length is encoded and checked also (see ConvertFromAlpha).
+        /// Encodes a string using only uppercase letters of the alphabet.  String length is encoded and checked also (see ConvertFromAlpha).  This is NOT meant to be cryptographically secure!
         /// </summary>
         /// <param name="s">The string to encode</param>
         /// <returns>An encoded string</returns>
@@ -245,7 +263,11 @@ namespace RMDEnterpriseLibrary
             }
             return t;
         }
-
+        /// <summary>
+        /// Decodes a string encoded with ConvertToAlpha
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static string ConvertFromAlpha(string s)
         {
             string t = "";
@@ -286,6 +308,12 @@ namespace RMDEnterpriseLibrary
                 return s;
             }
         }
+        /// <summary>
+        /// Returns true if s contains a list of integers separated by the specified separator character
+        /// </summary>
+        /// <param name="s">Source string</param>
+        /// <param name="separator">Expected separator character</param>
+        /// <returns></returns>
         public static bool isIntList(string s, char separator)
         {
             bool allNumeric = true;
@@ -300,6 +328,11 @@ namespace RMDEnterpriseLibrary
             }
             return allNumeric;
         }
+        /// <summary>
+        /// Returns the short Name of a file via FileInfo (probably a terrible way to do this, retained for legacy)
+        /// </summary>
+        /// <param name="FilePath"></param>
+        /// <returns></returns>
         public static string GetFileNameFromFilePath(string FilePath)
         {
             //            string sPath = System.Web.HttpContext.Current.Request.Url.AbsolutePath;
@@ -307,13 +340,27 @@ namespace RMDEnterpriseLibrary
             string sRet = oInfo.Name;
             return sRet;
         }
+        /// <summary>
+        /// Shallow copy host object
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
         public static class AnyObject<T> where T : class, new()
         {
+            /// <summary>
+            /// Shallow copies value type and string properties from an object into a new object of the same type
+            /// </summary>
+            /// <param name="item">Source object</param>
+            /// <returns></returns>
             public static T ShallowCopy(T item)
             {
                 return ShallowCopy(item, "");
             }
-
+            /// <summary>
+            /// Shallow copies value type and string properties from an object into a new object of the same type, omitting the specified properties
+            /// </summary>
+            /// <param name="item">Source object</param>
+            /// <param name="OmitPropeties">Pipe-delimited list of properties to skip</param>
+            /// <returns></returns>
             public static T ShallowCopy(T item, string OmitPropeties)
             {
                 if (item == null)
