@@ -7,28 +7,58 @@ namespace RMDEnterpriseLibrary
 {
     public static class Helpers
     {
+        /// <summary>
+        /// Same as bool?.GetValueOrDefault
+        /// </summary>
+        /// <param name="IsTrue">Source value</param>
+        /// <returns></returns>
         public static bool BoolFromNullable(bool? IsTrue)
         {
             return (IsTrue != null) && (bool)IsTrue;
         }
+        /// <summary>
+        /// Same as bool?.GetValueOrDefault except returns a bool?
+        /// </summary>
+        /// <param name="IsTrue"></param>
+        /// <returns></returns>
         public static bool? NullableBoolIsTrue(bool? IsTrue)
         {
             return (bool?)((IsTrue != null) && (bool)IsTrue);
         }
+        /// <summary>
+        /// Check if a string contains a value double.  Returns boolean result of double.TryParse
+        /// </summary>
+        /// <param name="s">Source string</param>
+        /// <returns></returns>
         public static bool IsNumeric(string s)
         {
             double d;
             return double.TryParse(s, out d);
         }
+        /// <summary>
+        /// Check if a string can be parsed as DateTime.  Returns result of DateTime.TryParse
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static bool IsDate(string s)
         {
             DateTime dt;
             return DateTime.TryParse(s, out dt);
         }
+        /// <summary>
+        /// Doubles all instances of a single quote in the string
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static string SQLQuote(string s)
         {
             return s.Replace("'", "''");
         }
+        /// <summary>
+        /// If s is null, return blank, otherwise returns s.ToString()
+        /// </summary>
+        /// <param name="s">Source object</param>
+        /// <returns></returns>
         public static string BlankNull(object s)
         {
             if (s == null)
@@ -40,6 +70,11 @@ namespace RMDEnterpriseLibrary
                 return s.ToString();
             }
         }
+        /// <summary>
+        /// If s is null, returned 0, otherwise results int value of s (same as int?.GetValueOrDefault)
+        /// </summary>
+        /// <param name="s">Source int?</param>
+        /// <returns></returns>
         public static int ZeroNull(int? s)
         {
             if (s == null)
@@ -51,14 +86,29 @@ namespace RMDEnterpriseLibrary
                 return (int)s;
             }
         }
+        /// <summary>
+        /// Replaces all instances of double quote with \"
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static string JSDoubleQuote(string s)
         {
-            return s.Replace("\"", "\\\"");
+            return s?.Replace("\"", "\\\"");
         }
+        /// <summary>
+        /// Replaces all instances of single quote with \'
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static string JSSingleQuote(string s)
         {
-            return s.Replace("'", "\\'");
+            return s?.Replace("'", "\\'");
         }
+        /// <summary>
+        /// Returns the value obtained via int.TryParse or 0
+        /// </summary>
+        /// <param name="s">Source string</param>
+        /// <returns></returns>
         public static int SafeIntFromString(string s)
         {
             if (s == null || !IsNumeric(s))
@@ -78,6 +128,11 @@ namespace RMDEnterpriseLibrary
                 }
             }
         }
+        /// <summary>
+        /// Returns the value obtained via Int64.TryParse or 0
+        /// </summary>
+        /// <param name="s">Source string</param>
+        /// <returns></returns>
         public static long SafeLongFromString(string s)
         {
             if (s == null || !IsNumeric(s))
@@ -97,6 +152,11 @@ namespace RMDEnterpriseLibrary
                 }
             }
         }
+        /// <summary>
+        /// Returns the value obtained via double.TryParse or 0
+        /// </summary>
+        /// <param name="s">Source string</param>
+        /// <returns></returns>
         public static double SafeDoubleFromString(string s)
         {
             if (s == null || !IsNumeric(s))
@@ -116,6 +176,11 @@ namespace RMDEnterpriseLibrary
                 }
             }
         }
+        /// <summary>
+        /// If string is a valid DateTime, returns it in the format dt.ToString("ddd M/d h:mm").ToUpper() + dt.ToString("tt").ToLower(), otherwise returns blank
+        /// </summary>
+        /// <param name="sdt">Source string</param>
+        /// <returns>Non-null string</returns>
         public static string CompactDateTimeString(string sdt)
         {
             if (sdt != null && IsDate(sdt))
