@@ -159,7 +159,7 @@ namespace RMDEnterpriseLibrary
         /// </summary>
         /// <param name="s">string to process</param>
         /// <param name="search">string to search for</param>
-        /// <param name="ReturnWholeStringIfNotFound">if true, and search is 
+        /// <param name="returnWholeStringIfNotFound">if true, and search is 
         /// not found, whole string is returned; if false blank is returned
         /// </param>
         /// <returns></returns>
@@ -283,8 +283,8 @@ namespace RMDEnterpriseLibrary
         /// <summary>
         /// Returns the portion of a string to the left of the first occurrence of a character
         /// </summary>
-        /// <param name="s"></param>
-        /// <param name="c"></param>
+        /// <param name="s">Source string</param>
+        /// <param name="c">char to search for (case-sensitive)</param>
         /// <returns></returns>
         public static string LeftOf(this string s, char c)
         {
@@ -292,12 +292,24 @@ namespace RMDEnterpriseLibrary
                 return "";
             return LeftOf(s, c.ToString());
         }
+        /// <summary>
+        /// Returns the portion of a string to the right of the last occurrence of a character
+        /// </summary>
+        /// <param name="s">Source string</param>
+        /// <param name="c">char to search for (case-sensitive)</param>
+        /// <returns></returns>
         public static string RightOf(this string s, char c)
         {
             if (string.IsNullOrEmpty(s))
                 return "";
             return RightOf(s, c.ToString());
         }
+        /// <summary>
+        /// Returns the right len characters of a string.  If string is shorter than len, whole string is returned.
+        /// </summary>
+        /// <param name="s">Source string</param>
+        /// <param name="len">Maximum characters to return</param>
+        /// <returns>string</returns>
         public static string Right(this string s, int len)
         {
             if (string.IsNullOrEmpty(s))
@@ -309,6 +321,12 @@ namespace RMDEnterpriseLibrary
             else
                 return s.Substring(s.Length - len);
         }
+        /// <summary>
+        /// Attempts to pluralize a work using standard English rules accounting for ending in y, vowel+y, and s.
+        /// </summary>
+        /// <param name="s">Source string</param>
+        /// <param name="pluralize">If true, string is pluralized</param>
+        /// <returns></returns>
         public static string Pluralize(this string s, bool pluralize)
         {
             if (string.IsNullOrEmpty(s))
@@ -329,20 +347,42 @@ namespace RMDEnterpriseLibrary
             else
                 return s;
         }
+        /// <summary>
+        /// Attempts to pluralize a work using standard English rules accounting for ending in y, vowel+y, and s.
+        /// </summary>
+        /// <param name="s">Source string</param>
+        /// <returns></returns>
         public static string Pluralize(this string s)
         {
             if (string.IsNullOrEmpty(s))
                 return "";
             return Pluralize(s, true);
         }
+        /// <summary>
+        /// [Deprecated] Use .IsNullOrEmpty or .IsNullOrWhiteSpace instead
+        /// </summary>
+        /// <param name="s">Source string</param>
+        /// <param name="TreatWhiteSpaceAsBlank">If true, whitespace is treated as blank</param>
+        /// <returns></returns>
         public static bool IsBlankOrNull(this string s, bool TreatWhiteSpaceAsBlank)
         {
             return (string.IsNullOrEmpty(s) || (TreatWhiteSpaceAsBlank && s.Trim().Length == 0));
         }
+        /// <summary>
+        /// [Deprecated] Alias for IsNullOrEmpty
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static bool IsBlankOrNull(this string s)
         {
             return string.IsNullOrEmpty(s);
         }
+        /// <summary>
+        /// Returns null if string is blank or whitespace (depending on TreatWhiteSpaceAsBlank)
+        /// </summary>
+        /// <param name="s">Source string</param>
+        /// <param name="TreatWhiteSpaceAsBlank">If true, white space is treated as blank</param>
+        /// <returns></returns>
         public static string NullIfBlank(this string s, bool TreatWhiteSpaceAsBlank)
         {
             if (string.IsNullOrEmpty(s) || (TreatWhiteSpaceAsBlank && s.Trim().Length == 0))
@@ -350,6 +390,11 @@ namespace RMDEnterpriseLibrary
             else
                 return s;
         }
+        /// <summary>
+        /// If string IsNullOrEmpty, returns null, otherwise returns original string
+        /// </summary>
+        /// <param name="s">Source string</param>
+        /// <returns></returns>
         public static string NullIfBlank(this string s)
         {
             if (string.IsNullOrEmpty(s))
@@ -357,6 +402,11 @@ namespace RMDEnterpriseLibrary
             else
                 return s;
         }
+        /// <summary>
+        /// Strips all characters that do not pass char.IsLetterOrDigit test
+        /// </summary>
+        /// <param name="s">Source string</param>
+        /// <returns>Non-null string</returns>
         public static string StripNonAlphaNumeric(this string s)
         {
             if (string.IsNullOrEmpty(s))
@@ -367,6 +417,12 @@ namespace RMDEnterpriseLibrary
                     sb.Append(s[i]);
             return sb.ToString();
         }
+        /// <summary>
+        /// Removes all occurrences of chars from a string
+        /// </summary>
+        /// <param name="s">Source string</param>
+        /// <param name="chars">Chars to remove</param>
+        /// <returns>Non-null string</returns>
         public static string StripChars(this string s, char[] chars)
         {
             if (string.IsNullOrEmpty(s))
@@ -397,6 +453,12 @@ namespace RMDEnterpriseLibrary
             }
             return sb.ToString();
         }
+        /// <summary>
+        /// Returns the number of occurrences of a given char in a string
+        /// </summary>
+        /// <param name="s">Source string</param>
+        /// <param name="FindChar">char to count</param>
+        /// <returns></returns>
         public static long ContainsCount(this string s, char FindChar)
         {
             if (string.IsNullOrEmpty(s))
