@@ -70,7 +70,7 @@ namespace RMDEnterpriseLibrary
                 return s;
         }
         /// <summary>
-        /// Shortens a string to a maximum target length appending "..." if shortening occured
+        /// Shortens a string to a maximum target length appending "..." if shortening occurred
         /// </summary>
         /// <param name="s">string to process</param>
         /// <param name="length">check length; if string is shorter than this it is not processed</param>
@@ -112,7 +112,7 @@ namespace RMDEnterpriseLibrary
                 return s.Substring(0, len);
         }
         /// <summary>
-        /// Returns the portion of the string left of the first occurence of a 
+        /// Returns the portion of the string left of the first occurrence of a 
         /// target string; case sensitive; returns blank if input is null or 
         /// search string is not found
         /// </summary>
@@ -131,7 +131,7 @@ namespace RMDEnterpriseLibrary
                 return s.Substring(0, s.IndexOf(search));
         }
         /// <summary>
-        /// Returns the portion of the string left of the first occurence of a 
+        /// Returns the portion of the string left of the first occurrence of a 
         /// target string; case sensitive; returns blank if input is null or 
         /// search string is not found
         /// </summary>
@@ -153,7 +153,7 @@ namespace RMDEnterpriseLibrary
                 return s.Substring(0, (s + search).IndexOf(search));
         }
         /// <summary>
-        /// Returns the portion of the string left of the last occurence of a 
+        /// Returns the portion of the string left of the last occurrence of a 
         /// target string; case sensitive; returns blank if input is null or 
         /// search string is not found
         /// </summary>
@@ -172,7 +172,7 @@ namespace RMDEnterpriseLibrary
             return s.Substring(0, s.LastIndexOf(search));
         }
         /// <summary>
-        /// Returns the portion of the string right of the last occurence of a 
+        /// Returns the portion of the string right of the last occurrence of a 
         /// target string; case sensitive; returns blank if input is null or 
         /// search string is not found
         /// </summary>
@@ -197,7 +197,7 @@ namespace RMDEnterpriseLibrary
             }
         }
         /// <summary>
-        /// Returns the portion of the string right of the last occurence of a 
+        /// Returns the portion of the string right of the last occurrence of a 
         /// target string; case sensitive; returns blank if input is null or 
         /// search string is not found
         /// </summary>
@@ -216,7 +216,7 @@ namespace RMDEnterpriseLibrary
                 return s.Substring(s.LastIndexOf(search) + search.Length);
         }
         /// <summary>
-        /// Returns the portion of the string right of the first occurence of a 
+        /// Returns the portion of the string right of the first occurrence of a 
         /// target string; case sensitive; returns blank if input is null or 
         /// search string is not found
         /// </summary>
@@ -235,7 +235,7 @@ namespace RMDEnterpriseLibrary
                 return s.Substring(s.IndexOf(search) + search.Length);
         }
         /// <summary>
-        /// Returns the portion of the string right of the first occurence of a 
+        /// Returns the portion of the string right of the first occurrence of a 
         /// target string using the specified comparer when searching; returns 
         /// blank if input is null or search string is not found
         /// </summary>
@@ -281,7 +281,7 @@ namespace RMDEnterpriseLibrary
             }
         }
         /// <summary>
-        /// Returns the portion of a string to the left of the first occurence of a character
+        /// Returns the portion of a string to the left of the first occurrence of a character
         /// </summary>
         /// <param name="s"></param>
         /// <param name="c"></param>
@@ -427,7 +427,6 @@ namespace RMDEnterpriseLibrary
         /// <returns></returns>
         public static string[] SplitKeepSplitters(this string s, params char[] splitters)
         {
-            //string[] outarray = null;
             if (string.IsNullOrEmpty(s) || splitters == null || splitters.Length == 0)
                 return new string[] {s};
 

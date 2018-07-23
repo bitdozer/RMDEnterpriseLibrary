@@ -171,7 +171,7 @@ namespace RMDEnterpriseLibrary
         public static string ConvertToAlpha(string s)
         {
             string t = "";
-            char[] a = (s + "|" + s.Length.ToString()).ToCharArray(); // add payload length and encode with string to prevent abitrary adding and dropping of characters
+            char[] a = (s + "|" + s.Length.ToString()).ToCharArray(); // add payload length and encode with string to prevent arbitrary adding and dropping of characters
             char c;
             for (int i = 0; i < a.Length; i++)
             {
