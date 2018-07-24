@@ -639,8 +639,7 @@ namespace RMDEnterpriseLibrary
         {
             if (string.IsNullOrEmpty(s))
                 return false;
-            double d;
-            return double.TryParse(s, out d);
+            return double.TryParse(s, out var d);
         }
         /// <summary>
         /// Converts a string array to a string by concatenating all elements with the specified separator.  Nulls are replaced with blanks.
