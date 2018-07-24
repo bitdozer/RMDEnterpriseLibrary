@@ -5,6 +5,9 @@ using System.Text;
 
 namespace RMDEnterpriseLibrary
 {
+    /// <summary>
+    /// Static helpers methods for various data tests and conversions 
+    /// </summary>
     public static class Helpers
     {
         /// <summary>
@@ -297,6 +300,11 @@ namespace RMDEnterpriseLibrary
             }
             return t;
         }
+        /// <summary>
+        /// Returns DateTime.Parse(s).ToString("d") or the original string if it cannot be parsed as a date
+        /// </summary>
+        /// <param name="s">Source string</param>
+        /// <returns></returns>
         public static string SafeShortDate(string s)
         {
             if (IsDate(s))
@@ -379,6 +387,12 @@ namespace RMDEnterpriseLibrary
                 return newItem;
             }
         }
+        /// <summary>
+        /// [Deprecated] A manual implementation of Guid.TryParse, for some reason
+        /// </summary>
+        /// <param name="s">Source string</param>
+        /// <param name="value">[out] Parsed Guid if success or Guid.Empty if failed</param>
+        /// <returns></returns>
         public static Boolean TryStrToGuid(String s, out Guid value)
         {
             if (s == null)
@@ -397,6 +411,11 @@ namespace RMDEnterpriseLibrary
                 return false;
             }
         }
+        /// <summary>
+        /// Returns true if string can be parsed as a Guid that is not Guid.Empty
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public static Boolean IsNonEmptyGuid(string s)
         {
             Guid testguid;
@@ -407,6 +426,11 @@ namespace RMDEnterpriseLibrary
             else
                 return false;
         }
+        /// <summary>
+        /// Wrapper for TryStringToGuid returning a parsed Guid value or Guid.Empty if parsing fails
+        /// </summary>
+        /// <param name="s">Source string</param>
+        /// <returns></returns>
         public static Guid SafeGuidFromString(string s)
         {
             Guid testguid;
