@@ -663,15 +663,15 @@ namespace RMDEnterpriseLibrary
         /// <param name="productArray">Array of string. nulls are converted to the empty string</param>
         /// <param name="alwaysQuote">Always use quotes, even if no value requires it</param>
         /// <returns></returns>
-        public static string ToCsvString(this string[] productArray, bool alwaysQuote = false)
+        public static string ToCsvString(this IList<string> productArray, bool alwaysQuote = false)
         {
             if (productArray == null)
                 return null;
-            if (productArray.Length == 0)
+            if (productArray.Count == 0)
                 return "";
             string s = "";
             bool quoted = alwaysQuote || productArray.Any(p => p != null && (p.Contains(",") || p.Contains("\"")));
-            for (var i = 0; i < productArray.Length; i++)
+            for (var i = 0; i < productArray.Count; i++)
             {
                 var s1 = productArray[i] ?? "";
                 if (quoted)

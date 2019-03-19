@@ -33,6 +33,14 @@ namespace RMDEnterpriseLibrary.UnitTests
             Assert.AreEqual("\",\",\"No, he said to that\",\"\"", (new[] { ",", "No, he said to that", "" }).ToCsvString(true));
         }
         [TestMethod()]
+        public void ListToCsvStringHandleCommas()
+        {
+            // contains comma
+            Assert.AreEqual("\",\",\"No, he said to that\",\"\"", (new List<string>(new[] { ",", "No, he said to that", "" })).ToCsvString(false));
+            Assert.AreEqual("\",\",\"No, he said to that\",\"\"", (new List<string>(new[] { ",", "No, he said to that", "" })).ToCsvString());
+            Assert.AreEqual("\",\",\"No, he said to that\",\"\"", (new List<string>(new[] { ",", "No, he said to that", "" })).ToCsvString(true));
+        }
+        [TestMethod()]
         public void ToString_Test()
         {
             Assert.AreEqual(",,", (new[] { "", "", "" }).ToString(","));
